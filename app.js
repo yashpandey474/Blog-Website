@@ -22,7 +22,6 @@ posts = [];
 app.get(
   "/",
   function(request, response){
-    console.log(posts);
     response.render("home", {
       startingContent: homeStartingContent,
       postsArray: posts
@@ -59,7 +58,6 @@ app.get(
       var storedTitle = str.lowerCase(post.title)
       // CHECK FOR POST WITH SAME TITLE
       if (storedTitle == requestedTitle){
-        console.log("Match Found");
         response.render("post", {
           post: post
         });
