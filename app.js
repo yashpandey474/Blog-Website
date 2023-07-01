@@ -15,10 +15,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+//ARRAY FOR STORING ALL PUBLISHED POSTS
+posts = [];
 //1. ROUTE GET REQUESTS AT HOME
 app.get(
   "/",
   function(request, response){
+    console.log(posts)
     response.render("home", {startingContent: homeStartingContent});
 });
 
@@ -50,9 +53,16 @@ app.get(
 app.post(
   "/compose",
   function(request, response){
-    console.log(request.body.content);
-  }
-)
+    const post = {
+      content: request.body.postContent,
+      title: request.body.postTitle
+    };
+
+    posts.push(post);
+
+    response.redirect("/")
+
+});
 
 
 
