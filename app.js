@@ -49,6 +49,12 @@ app.get(
     response.render("compose");
 });
 
+//ROUTE GET REQUESTS OF A POST
+app.get(
+  "/posts/:post",
+  function(request, response){
+    console.log(request.params.post);
+});
 
 
 
