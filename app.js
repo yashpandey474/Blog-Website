@@ -50,7 +50,7 @@ app.get(
 app.post(
   "/compose",
   function(request, response){
-
+    console.log(request.body.content);
   }
 )
 
