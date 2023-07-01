@@ -21,6 +21,7 @@ posts = [];
 app.get(
   "/",
   function(request, response){
+    console.log(posts);
     response.render("home", {
       startingContent: homeStartingContent,
       postsArray: posts

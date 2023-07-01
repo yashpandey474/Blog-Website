@@ -5,11 +5,13 @@
 </p>
 <!-- WRITE ALL PUBLISHED POSTS -->
 <div>
-    <% for (var i = 0; i<postsArray.length; i++){ %>
+    <% postsArray.forEach(function(post){ %>
         <!-- LOG EACH POST -->
         <div>
-            <p><%=postsArray[i]%></p>
+            <h1><%=post.title%></h1>
+            <p><%=post.content%></p>
         </div>
-    <% } %>
+
+    <% }); %>
 </div>
 <%- include("partials/footer") -%>
