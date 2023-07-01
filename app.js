@@ -60,6 +60,9 @@ app.get(
       // CHECK FOR POST WITH SAME TITLE
       if (storedTitle == requestedTitle){
         console.log("Match Found");
+        response.render("post", {
+          post: post
+        });
     }});
 });
 
