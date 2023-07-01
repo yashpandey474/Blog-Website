@@ -19,8 +19,22 @@ app.use(express.static("public"));
 app.get(
   "/",
   function(request, response){
-    response.render("home", {homeStartingContent: homeStartingContent});
+    response.render("home", {startingContent: homeStartingContent});
 });
+
+//2. ROUTE GET REQUESTS AT ABOUT
+app.get(
+  "/about",
+  function(request, response){
+    response.render("about", {startingContent: aboutContent})
+});
+
+//3. ROUTE GET REQUESRTS AT CONTACT
+app.get(
+  "/contact",
+  function(request, response){
+    response.render("contact", {startingContent: contactContent})
+  });
 
 
 
