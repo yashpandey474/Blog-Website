@@ -36,8 +36,23 @@ app.get(
     response.render("contact", {startingContent: contactContent})
   });
 
+//4. ROUTE GET REQUESTS AT COMPOSE
+app.get(
+  "/compose",
+  function(request, response){
+    response.render("compose");
+});
 
 
+
+
+//ROUTE POST REQUESTS AT COMPOSE
+app.post(
+  "/compose",
+  function(request, response){
+
+  }
+)
 
 
 
