@@ -9,7 +9,7 @@
         <!-- LOG EACH POST -->
         <div>
             <h1><%=post.title%></h1>
-            <p><%=post.content.substring(0,100)%> ...</p>
+            <p><%=post.content.substring(0,100)%> ...<a href= "/posts/<%=post.title%>">Read More</a></p>
         </div>
 
     <% }); %>
