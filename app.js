@@ -21,8 +21,10 @@ posts = [];
 app.get(
   "/",
   function(request, response){
-    console.log(posts)
-    response.render("home", {startingContent: homeStartingContent});
+    response.render("home", {
+      startingContent: homeStartingContent,
+      postsArray: posts
+    });
 });
 
 //2. ROUTE GET REQUESTS AT ABOUT

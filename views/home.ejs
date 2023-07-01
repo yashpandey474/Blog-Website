@@ -3,4 +3,13 @@
 <p>
     <%= startingContent %>
 </p>
+<!-- WRITE ALL PUBLISHED POSTS -->
+<div>
+    <% for (var i = 0; i<postsArray.length; i++){ %>
+        <!-- LOG EACH POST -->
+        <div>
+            <p><%=postsArray[i]%></p>
+        </div>
+    <% } %>
+</div>
 <%- include("partials/footer") -%>
