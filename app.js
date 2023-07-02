@@ -76,15 +76,24 @@ app.get(
 app.get(
   "/posts/:post",
   function(request, response){
-    var requestedTitle = _.lowerCase(request.params.post);
-    posts.forEach(function(post){
-      var storedTitle = _.lowerCase(post.title)
-      // CHECK FOR POST WITH SAME TITLE
-      if (storedTitle == requestedTitle){
-        response.render("post", {
-          post: post
-        });
-    }});
+    var requestedID = request.params.post;
+
+    console.log("REQUESTED: " + requestedID);
+    Post.findOne({_id: requestedID})
+    .then(function(foundPost){
+      if(foundPost){
+        response.render("post", {post: foundPost})
+      }
+      else{
+        console.log("Queried post does not exist");
+        response.redirect("/");
+      }
+    })
+    .catch(function(err){
+      if(err){
+        console.log(err);
+      }
+    })
 });
 
 
