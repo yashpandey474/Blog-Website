@@ -19,32 +19,36 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/blogsDB");
 
-
 //CREATE SCHEMA FOR BLOG POSTS
-const blogSchema = new mongoose.Schema({
-  title:{
-    type: String,
-    required: True
-  },
-  content: {
-    type: String
-  }
+const postSchema = new mongoose.Schema({
+  title: String,
+  content: String
 });
 
 //CREATE MODEL FOR BLOG POSTS COLLECTION
-const Blog = mongoose.model(
-  "Blog",
-  blogSchema
+const Post = mongoose.model(
+  "Post",
+  postSchema
 );
 
 //1. ROUTE GET REQUESTS AT HOME
 app.get(
   "/",
   function(request, response){
-    response.render("home", {
-      startingContent: homeStartingContent,
-      postsArray: posts
-    });
+    Post.find({})
+    .then(function(posts){
+      console.log(posts);
+      //SHOW THE HOME PAGE
+      response.render("home", {
+        startingContent: homeStartingContent,
+        postsArray: posts
+      });
+    })
+    .catch(function(err){
+      if(err){
+        console.log(err);
+      }
+    })
 });
 
 //2. ROUTE GET REQUESTS AT ABOUT
@@ -90,16 +94,18 @@ app.post(
   "/compose",
   function(request, response){
     //CREATE NEW BLOG OBJECT
-    const blog = new Blog({
+    const post = new Post({
       title: request.body.postTitle,
       content: request.body.postContent
     });
 
     //SAVE THE BLOG
-    blog.save();
+    post.save();
+
+    console.log("Blog saved successfully" + post);
 
     //SHOW BLOGS ON HOME PAGE
-    response.redirect("/")
+    response.redirect("/");
 
 });
 
